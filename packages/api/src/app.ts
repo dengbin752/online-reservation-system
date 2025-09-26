@@ -71,7 +71,7 @@ const startServer = async () => {
 	// Apply the GraphQL middleware
 	app.use(
 		"/api/graphql",
-		authenticate,
+		// authenticate,
 		expressMiddleware(server, {
 			context: async ({ req }: { req: Request }) => {
 				// Add your context here

@@ -40,7 +40,7 @@ This mono-repo application follows a service-oriented architecture with the foll
 1. Clone the repository or unzip the tarball:
 
 ```bash
-git clone <repository-url>
+git clone git@github.com:dengbin752/online-reservation-system.git
 cd online-reservation-system
 ```
 
@@ -59,9 +59,10 @@ HTTPS_PROXY=http://127.0.0.1:7890 ./scripts/start.sh
 
 Valid services:
 
+- Customer interface: [http://localhost:3001](http://localhost:3001)
 - REST API: [http://localhost:3000](http://localhost:3000)
 - GraphQL Debug Console: [http://localhost:3000/api/graphql](http://localhost:3000/api/graphql)
-- Customer interface: [http://localhost:3001](http://localhost:3001)
+
 
 ## API Documentation
 
