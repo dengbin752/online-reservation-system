@@ -20,7 +20,7 @@ fi
 
 # Start services
 echo "🐳 Starting Docker containers..."
-docker-compose -f docker-compose.dev.yml up -d couchbase
+docker compose -f docker-compose.dev.yml up -d couchbase
 
 # Initialize Couchbase
 echo "📊 Initializing Couchbase database..."
@@ -28,7 +28,7 @@ echo "📊 Initializing Couchbase database..."
 
 # Start API service
 echo "🔧 Starting API service..."
-docker-compose -f docker-compose.dev.yml up -d api
+docker compose -f docker-compose.dev.yml up -d api
 
 # Wait for API to be ready
 echo "⏳ Waiting for API to be ready..."
@@ -36,11 +36,11 @@ sleep 10
 
 # # Start customer UI
 echo "🎨 Starting Customer UI..."
-docker-compose -f docker-compose.dev.yml up -d customer-ui
+docker compose -f docker-compose.dev.yml up -d customer-ui
 
 # # Start admin UI
 # echo "👨‍💼 Starting Admin UI..."
-# docker-compose up -d admin-ui
+# docker compose up -d admin-ui
 
 # Display status
 echo ""
