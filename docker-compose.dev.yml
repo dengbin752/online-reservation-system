@@ -5,8 +5,8 @@ services:
     image: couchbase:enterprise-7.6.0
     container_name: couchbase-db-dev
     environment:
-      - COUCHBASE_ADMINISTRATOR_USERNAME=${COUCHBASE_USERNAME:-Administrator}
-      - COUCHBASE_ADMINISTRATOR_PASSWORD=${COUCHBASE_PASSWORD:-password}
+      COUCHBASE_ADMINISTRATOR_USERNAME: ${COUCHBASE_USERNAME:-Administrator}
+      COUCHBASE_ADMINISTRATOR_PASSWORD: ${COUCHBASE_PASSWORD:-password}
       - COUCHBASE_BUCKET=${COUCHBASE_BUCKET:-reservations}
       - COUCHBASE_BUCKET_RAM=256
       - COUCHBASE_BUCKET_REPLICA=1
