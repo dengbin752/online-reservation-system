@@ -1,12 +1,12 @@
-import { LoginForm } from "../components/LoginForm";
+import { RegisterForm } from "../components/RegisterForm";
 import { MyHeader } from "../components/MyHeader";
 
-export function LogReg() {
+export function Register() {
     return (
         <div>
             <MyHeader />
             <div class="p-8">
-                <LoginForm />
+                <RegisterForm />
             </div>
         </div>
     )

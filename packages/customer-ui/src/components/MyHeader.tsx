@@ -12,7 +12,7 @@ export function MyHeader() {
 	const handleLogout = () => {
 		localStorage.clear();
 		setMe(null);
-	    setTimeout(() => navigate("/logreg"), 0);
+	    setTimeout(() => navigate("/login"), 0);
 	};
 
 	onMount(() => {
@@ -28,14 +28,14 @@ export function MyHeader() {
 			<nav class="flex space-x-4">
 				{!me() && (
 					<A
-						href="/logreg"
+						href="/login"
 						classList={{
 							"px-4 py-2 text-sm font-medium rounded-full shadow-sm transition": true,
 							"text-gray-700 bg-white hover:bg-gray-100": !isLogRegView(),
 							"text-blue-700 bg-blue-100": !!isLogRegView(),
 						}}
 					>
-						Login / Register
+						Login
 					</A>
 				)}
 				{me() && (

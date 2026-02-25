@@ -1,7 +1,7 @@
 import { LoginForm } from "../components/LoginForm";
 import { MyHeader } from "../components/MyHeader";
 
-export function LogReg() {
+export function Login() {
     return (
         <div>
             <MyHeader />
