@@ -14,7 +14,7 @@ sleep 10
 
 # Initialize cluster
 echo "🏗️ Initializing cluster..."
-docker-compose -f "$DOCKER_COMPOSE_FILE" exec couchbase /opt/couchbase/bin/couchbase-cli cluster-init \
+docker compose -f "$DOCKER_COMPOSE_FILE" exec couchbase /opt/couchbase/bin/couchbase-cli cluster-init \
   --cluster-username=Administrator \
   --cluster-password=password \
   --cluster-ramsize=512 \
@@ -23,7 +23,7 @@ docker-compose -f "$DOCKER_COMPOSE_FILE" exec couchbase /opt/couchbase/bin/couch
 
 # Create reservations bucket
 echo "🪣 Creating reservations bucket..."
-docker-compose -f "$DOCKER_COMPOSE_FILE" exec couchbase /opt/couchbase/bin/couchbase-cli bucket-create \
+docker compose -f "$DOCKER_COMPOSE_FILE" exec couchbase /opt/couchbase/bin/couchbase-cli bucket-create \
   --bucket=reservations \
   --bucket-ramsize=256 \
   --bucket-replica=1 \
@@ -37,7 +37,7 @@ docker-compose -f "$DOCKER_COMPOSE_FILE" exec couchbase /opt/couchbase/bin/couch
 
 # # Create users bucket for authentication
 # echo "👥 Creating users bucket..."
-# docker-compose -f "$DOCKER_COMPOSE_FILE" exec couchbase /opt/couchbase/bin/couchbase-cli bucket-create \
+# docker compose -f "$DOCKER_COMPOSE_FILE" exec couchbase /opt/couchbase/bin/couchbase-cli bucket-create \
 #   --bucket=users \
 #   --bucket-ramsize=128 \
 #   --bucket-replica=1 \
@@ -57,7 +57,7 @@ sleep 30  # Wait longer for services to be fully ready
 
 # Create primary index for reservations
 echo "Creating primary index for reservations..."
-docker-compose -f "$DOCKER_COMPOSE_FILE" exec couchbase cbq -e http://localhost:8091 -u Administrator -p password --script "
+docker compose -f "$DOCKER_COMPOSE_FILE" exec couchbase cbq -e http://localhost:8091 -u Administrator -p password --script "
 CREATE PRIMARY INDEX ON \`reservations\`;" || echo "⚠️  Primary index creation for reservations failed, continuing..."
 
 echo "✅ Couchbase initialization completed!"

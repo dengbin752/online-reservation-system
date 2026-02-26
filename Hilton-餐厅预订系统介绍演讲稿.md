@@ -149,7 +149,7 @@ hilton-restaurants-reservation-system/
 ### Docker 部署
 ```bash
 # 生产环境部署
-docker-compose up -d
+docker compose up -d
 ```
 
 ---

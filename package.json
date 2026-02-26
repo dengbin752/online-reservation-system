@@ -19,9 +19,9 @@
     "lint": "npm run lint:api && npm run lint:customer && npm run lint:admin",
     "lint:api": "cd packages/api && npm run lint",
     "lint:customer": "cd packages/customer-ui && npm run lint",
-    "docker:up": "docker-compose up -d",
-    "docker:down": "docker-compose down",
-    "docker:logs": "docker-compose logs -f"
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down",
+    "docker:logs": "docker compose logs -f"
   },
   "devDependencies": {
     "concurrently": "^8.2.2",

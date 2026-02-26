@@ -11,7 +11,7 @@ echo "⏳ Waiting for Couchbase to be ready..."
 attempt=0
 
 while [ $attempt -lt $MAX_ATTEMPTS ]; do
-    if docker-compose -f "$DOCKER_COMPOSE_FILE" exec couchbase cbq -u Administrator -p password --script "SELECT 1;" > /dev/null 2>&1; then
+    if docker compose -f "$DOCKER_COMPOSE_FILE" exec couchbase cbq -u Administrator -p password --script "SELECT 1;" > /dev/null 2>&1; then
         echo "✅ Couchbase is ready!"
         exit 0
     fi
