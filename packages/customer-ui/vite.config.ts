@@ -8,6 +8,12 @@ export default defineConfig({
 	server: {
 		port: 3000,
 		host: "0.0.0.0",
+		// 允许指定的主机访问
+		allowedHosts: [
+			'customer_ui_backend', // 放行报错提示的这个主机名
+			'localhost', // 保留本地访问（可选，根据你的需求）
+			'127.0.0.1'  // 保留IP访问（可选）
+		],
 		proxy: {
 			"/api": {
 				target: "http://api:3000",
