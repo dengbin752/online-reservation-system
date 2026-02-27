@@ -10,6 +10,27 @@ interface RegisterForm {
 	phone: string;
 }
 
+// 邮箱格式验证
+const validateEmail = (email: string): string => {
+	if (!email) return "";
+	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+	if (!emailRegex.test(email)) {
+		return "Please enter a valid email address";
+	}
+	return "";
+};
+
+// 手机号码格式验证
+const validatePhone = (phone: string): string => {
+	if (!phone) return "";
+	// 允许格式: +86 13800000000, 13800000000, (555) 123-4567, 555-123-4567
+	const phoneRegex = /^[\+]?[(]?[0-9]{1,3}[)]?[-\s\.]?[(]?[0-9]{1,4}[)]?[-\s\.]?[0-9]{1,4}[-\s\.]?[0-9]{1,9}$/;
+	if (!phoneRegex.test(phone)) {
+		return "Please enter a valid phone number";
+	}
+	return "";
+};
+
 export function RegisterForm() {
 	const navigate = useNavigate();
 
@@ -23,6 +44,22 @@ export function RegisterForm() {
 
 	const [registerError, setRegisterError] = createSignal("");
 	const [isRegistering, setIsRegistering] = createSignal(false);
+
+	// 验证错误状态
+	const [emailError, setEmailError] = createSignal("");
+	const [phoneError, setPhoneError] = createSignal("");
+
+	// 邮箱失去焦点时验证
+	const handleEmailBlur = () => {
+		const error = validateEmail(registerForm().email);
+		setEmailError(error);
+	};
+
+	// 手机号失去焦点时验证
+	const handlePhoneBlur = () => {
+		const error = validatePhone(registerForm().phone);
+		setPhoneError(error);
+	};
 
 	const handleRegisterInputChange = (
 		field: keyof RegisterForm,
@@ -101,10 +138,17 @@ export function RegisterForm() {
 						onInput={(e) =>
 							handleRegisterInputChange("email", e.currentTarget.value)
 						}
-						class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 transition"
+						onBlur={handleEmailBlur}
+						classList={{
+							"mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 transition": true,
+							"border-red-500 focus:border-red-300 focus:ring-red-200": !!emailError(),
+						}}
 						placeholder="you@example.com"
 						required
 					/>
+					{emailError() && (
+						<p class="mt-1 text-sm text-red-600">{emailError()}</p>
+					)}
 				</div>
 				<div>
 					<label
@@ -177,9 +221,16 @@ export function RegisterForm() {
 						onInput={(e) =>
 							handleRegisterInputChange("phone", e.currentTarget.value)
 						}
-						class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 transition"
+						onBlur={handlePhoneBlur}
+						classList={{
+							"mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 transition": true,
+							"border-red-500 focus:border-red-300 focus:ring-red-200": !!phoneError(),
+						}}
 						placeholder="+1 (555) 123-4567"
 					/>
+					{phoneError() && (
+						<p class="mt-1 text-sm text-red-600">{phoneError()}</p>
+					)}
 				</div>
 
 				<button
